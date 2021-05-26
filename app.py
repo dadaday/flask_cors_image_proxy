@@ -20,8 +20,8 @@ def insta_proxy():
         proxies = {}
     try:
         response = requests.get(insta_url, stream=True, proxies=proxies)
-    except:
-        return 'Wrong media url is provided', 400
+    except Exception as e:
+        return str(e), 400
     response.headers.pop('cross-origin-resource-policy', None)
     return response.content, response.status_code, response.headers.items()
 
